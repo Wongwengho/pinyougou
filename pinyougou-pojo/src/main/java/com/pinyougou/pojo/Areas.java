@@ -1,42 +1,48 @@
 package com.pinyougou.pojo;
 
-/**
- * Areas 实体类
- * @date 2019-03-28 18:43:33
- * @version 1.0
- */
-public class Areas implements java.io.Serializable{
+import javax.persistence.*;
+import java.io.Serializable;
 
-	private static final long serialVersionUID = 1L;
+/** 区域实体*/
+@Table(name="tb_areas")
+public class Areas implements Serializable{
+
+    /** 主键id */
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private Integer id;
-	private String areaid;
-	private String area;
-	private String cityid;
+	/** 区域id */
+	@Column(name="areaid")
+    private String areaId;
+	/** 区域名称 */
+	@Column(name="area")
+    private String area;
+	/** 城市id */
+	@Column(name="cityid")
+    private String cityId;
 
-	/** setter and getter method */
-	public void setId(Integer id){
-		this.id = id;
-	}
-	public Integer getId(){
-		return this.id;
-	}
-	public void setAreaid(String areaid){
-		this.areaid = areaid;
-	}
-	public String getAreaid(){
-		return this.areaid;
-	}
-	public void setArea(String area){
-		this.area = area;
-	}
-	public String getArea(){
-		return this.area;
-	}
-	public void setCityid(String cityid){
-		this.cityid = cityid;
-	}
-	public String getCityid(){
-		return this.cityid;
-	}
-
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getAreaId() {
+        return areaId;
+    }
+    public void setAreaId(String areaId) {
+        this.areaId = areaId;
+    }
+    public String getArea() {
+        return area;
+    }
+    public void setArea(String area) {
+        this.area = area;
+    }
+    public String getCityId() {
+        return cityId;
+    }
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
+    }
 }

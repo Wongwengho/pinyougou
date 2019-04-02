@@ -1,63 +1,83 @@
 package com.pinyougou.pojo;
 
-/**
- * FreightTemplate 实体类
- * @date 2019-03-28 18:43:33
- * @version 1.0
- */
-public class FreightTemplate implements java.io.Serializable{
+import java.io.Serializable;
+import java.util.Date;
 
-	private static final long serialVersionUID = 1L;
+import javax.persistence.*;
+
+@Table(name="tb_freight_template")
+public class FreightTemplate implements Serializable{
+    
+	private static final long serialVersionUID = -6912650278645533046L;
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private Long id;
-	private String sellerId;
-	private String isDefault;
-	private String name;
-	private String sendTimeType;
-	private String price;
-	private java.util.Date createTime;
+	@Column(name="seller_id")
+    private String sellerId;
+	@Column(name="is_default")
+    private String isDefault;
+	@Column(name="name")
+    private String name;
+	@Column(name="send_time_type")
+    private String sendTimeType;
+	@Column(name="price")
+    private Long price;
+	@Column(name="create_time")
+    private Date createTime;
 
-	/** setter and getter method */
-	public void setId(Long id){
-		this.id = id;
-	}
-	public Long getId(){
-		return this.id;
-	}
-	public void setSellerId(String sellerId){
-		this.sellerId = sellerId;
-	}
-	public String getSellerId(){
-		return this.sellerId;
-	}
-	public void setIsDefault(String isDefault){
-		this.isDefault = isDefault;
-	}
-	public String getIsDefault(){
-		return this.isDefault;
-	}
-	public void setName(String name){
-		this.name = name;
-	}
-	public String getName(){
-		return this.name;
-	}
-	public void setSendTimeType(String sendTimeType){
-		this.sendTimeType = sendTimeType;
-	}
-	public String getSendTimeType(){
-		return this.sendTimeType;
-	}
-	public void setPrice(String price){
-		this.price = price;
-	}
-	public String getPrice(){
-		return this.price;
-	}
-	public void setCreateTime(java.util.Date createTime){
-		this.createTime = createTime;
-	}
-	public java.util.Date getCreateTime(){
-		return this.createTime;
-	}
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(String sellerId) {
+        this.sellerId = sellerId == null ? null : sellerId.trim();
+    }
+
+    public String getIsDefault() {
+        return isDefault;
+    }
+
+    public void setIsDefault(String isDefault) {
+        this.isDefault = isDefault == null ? null : isDefault.trim();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getSendTimeType() {
+        return sendTimeType;
+    }
+
+    public void setSendTimeType(String sendTimeType) {
+        this.sendTimeType = sendTimeType == null ? null : sendTimeType.trim();
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 }

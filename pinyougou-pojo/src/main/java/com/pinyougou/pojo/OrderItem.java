@@ -1,84 +1,113 @@
 package com.pinyougou.pojo;
 
-/**
- * OrderItem 实体类
- * @date 2019-03-28 18:43:34
- * @version 1.0
- */
-public class OrderItem implements java.io.Serializable{
+import java.io.Serializable;
+import java.math.BigDecimal;
 
-	private static final long serialVersionUID = 1L;
+import javax.persistence.*;
+
+@Table(name="tb_order_item")
+public class OrderItem implements Serializable{
+  
+	private static final long serialVersionUID = -1486894002218647239L;
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private Long id;
-	private Long itemId;
-	private Long goodsId;
-	private Long orderId;
-	private String title;
-	private String price;
-	private Integer num;
-	private String totalFee;
-	private String picPath;
-	private String sellerId;
+	@Column(name="item_id")
+    private Long itemId;
+	@Column(name="goods_id")
+    private Long goodsId;
+	@Column(name="order_id")
+    private Long orderId;
+	@Column(name="title")
+    private String title;
+	@Column(name="price")
+    private BigDecimal price;
+	@Column(name="num")
+    private Integer num;
+	@Column(name="total_fee")
+    private BigDecimal totalFee;
+	@Column(name="pic_path")
+    private String picPath;
+	@Column(name="seller_id")
+    private String sellerId;
 
-	/** setter and getter method */
-	public void setId(Long id){
-		this.id = id;
-	}
-	public Long getId(){
-		return this.id;
-	}
-	public void setItemId(Long itemId){
-		this.itemId = itemId;
-	}
-	public Long getItemId(){
-		return this.itemId;
-	}
-	public void setGoodsId(Long goodsId){
-		this.goodsId = goodsId;
-	}
-	public Long getGoodsId(){
-		return this.goodsId;
-	}
-	public void setOrderId(Long orderId){
-		this.orderId = orderId;
-	}
-	public Long getOrderId(){
-		return this.orderId;
-	}
-	public void setTitle(String title){
-		this.title = title;
-	}
-	public String getTitle(){
-		return this.title;
-	}
-	public void setPrice(String price){
-		this.price = price;
-	}
-	public String getPrice(){
-		return this.price;
-	}
-	public void setNum(Integer num){
-		this.num = num;
-	}
-	public Integer getNum(){
-		return this.num;
-	}
-	public void setTotalFee(String totalFee){
-		this.totalFee = totalFee;
-	}
-	public String getTotalFee(){
-		return this.totalFee;
-	}
-	public void setPicPath(String picPath){
-		this.picPath = picPath;
-	}
-	public String getPicPath(){
-		return this.picPath;
-	}
-	public void setSellerId(String sellerId){
-		this.sellerId = sellerId;
-	}
-	public String getSellerId(){
-		return this.sellerId;
-	}
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public Long getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Long goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
+    public BigDecimal getTotalFee() {
+        return totalFee;
+    }
+
+    public void setTotalFee(BigDecimal totalFee) {
+        this.totalFee = totalFee;
+    }
+
+    public String getPicPath() {
+        return picPath;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath == null ? null : picPath.trim();
+    }
+
+    public String getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(String sellerId) {
+        this.sellerId = sellerId == null ? null : sellerId.trim();
+    }
 }

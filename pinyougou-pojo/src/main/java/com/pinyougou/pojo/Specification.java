@@ -1,28 +1,49 @@
 package com.pinyougou.pojo;
 
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.*;
+
 /**
- * Specification 实体类
- * @date 2019-03-28 18:43:34
+ * 规格实体类
+ * @author LEE.SIU.WAH
+ * @email lixiaohua7@163.com
+ * @date 2017年12月7日 下午3:31:00
  * @version 1.0
  */
-public class Specification implements java.io.Serializable{
-
-	private static final long serialVersionUID = 1L;
+@Table(name="tb_specification")
+public class Specification implements Serializable{
+   
+	private static final long serialVersionUID = -972374525762485421L;
+	/** 主键  规格编号 */
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private Long id;
-	private String specName;
-
-	/** setter and getter method */
-	public void setId(Long id){
-		this.id = id;
+	/** 规格名称 */
+	@Column(name="spec_name")
+    private String specName;
+    /** 规格属性集合 */
+	@Transient
+    private List<SpecificationOption> specificationOptions; 
+    
+    /** setter and getter method */
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getSpecName() {
+        return specName;
+    }
+    public void setSpecName(String specName) {
+        this.specName = specName == null ? null : specName.trim();
+    }
+	public List<SpecificationOption> getSpecificationOptions() {
+		return specificationOptions;
 	}
-	public Long getId(){
-		return this.id;
+	public void setSpecificationOptions(List<SpecificationOption> specificationOptions) {
+		this.specificationOptions = specificationOptions;
 	}
-	public void setSpecName(String specName){
-		this.specName = specName;
-	}
-	public String getSpecName(){
-		return this.specName;
-	}
-
 }

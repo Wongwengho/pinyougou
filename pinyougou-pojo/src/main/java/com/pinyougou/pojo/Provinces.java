@@ -1,35 +1,43 @@
 package com.pinyougou.pojo;
 
-/**
- * Provinces 实体类
- * @date 2019-03-28 18:43:34
- * @version 1.0
- */
-public class Provinces implements java.io.Serializable{
+import java.io.Serializable;
 
-	private static final long serialVersionUID = 1L;
+import javax.persistence.*;
+
+/** 省份实体 */
+@Table(name="tb_provinces")
+public class Provinces implements Serializable{
+    
+	private static final long serialVersionUID = -4527956140012506847L;
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private Integer id;
-	private String provinceid;
-	private String province;
+	@Column(name="provinceid")
+    private String provinceId;
+	@Column(name="province")
+    private String province;
 
-	/** setter and getter method */
-	public void setId(Integer id){
-		this.id = id;
-	}
-	public Integer getId(){
-		return this.id;
-	}
-	public void setProvinceid(String provinceid){
-		this.provinceid = provinceid;
-	}
-	public String getProvinceid(){
-		return this.provinceid;
-	}
-	public void setProvince(String province){
-		this.province = province;
-	}
-	public String getProvince(){
-		return this.province;
-	}
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getProvinceId() {
+        return provinceId;
+    }
+
+    public void setProvinceId(String provinceId) {
+        this.provinceId = provinceId;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
 }

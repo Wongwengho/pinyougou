@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.ISelect;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.pinyougou.common.pojo.PageResult;
 import com.pinyougou.mapper.BrandMapper;
 import com.pinyougou.pojo.Brand;
 import com.pinyougou.service.BrandService;
@@ -44,7 +45,15 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public void deleteAll(Serializable[] ids) {
-
+        try {
+        /*for (Serializable id : ids) {
+                delete(id);
+            }*/
+            // delete from tb_brand where id in(?,?,?)
+            brandMapper.deleteAll(ids);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -68,8 +77,21 @@ public class BrandServiceImpl implements BrandService {
         return brandMapper.selectAll();
     }
 
+    /**分页查询品牌*/
     @Override
-    public List<Brand> findByPage(Brand brand, int page, int rows) {
-        return null;
+    public PageResult findByPage(Brand brand, int page, int rows) {
+        try {
+            //开始分页
+            PageInfo<Brand> pageInfo = PageHelper.startPage(page, rows)
+                    .doSelectPageInfo(new ISelect() {
+                        @Override
+                        public void doSelect() {
+                            brandMapper.findAll(brand);
+                        }
+                    });
+            return new PageResult(pageInfo.getTotal(),pageInfo.getList());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

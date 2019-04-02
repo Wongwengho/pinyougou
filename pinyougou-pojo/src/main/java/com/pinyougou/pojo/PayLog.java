@@ -1,77 +1,102 @@
 package com.pinyougou.pojo;
 
-/**
- * PayLog 实体类
- * @date 2019-03-28 18:43:34
- * @version 1.0
- */
-public class PayLog implements java.io.Serializable{
+import java.io.Serializable;
+import java.util.Date;
 
-	private static final long serialVersionUID = 1L;
+import javax.persistence.*;
+
+@Table(name="tb_pay_log")
+public class PayLog implements Serializable{
+   
+	private static final long serialVersionUID = 362140345448460733L;
+	@Id @Column(name="out_trade_no")
 	private String outTradeNo;
-	private java.util.Date createTime;
-	private java.util.Date payTime;
-	private Long totalFee;
-	private String userId;
-	private String transactionId;
-	private String tradeState;
-	private String orderList;
-	private String payType;
+	@Column(name="create_time")
+    private Date createTime;
+	@Column(name="pay_time")
+    private Date payTime;
+	@Column(name="total_fee")
+    private Long totalFee;
+	@Column(name="user_id")
+    private String userId;
+	@Column(name="transaction_id")
+    private String transactionId;
+	@Column(name="trade_state")
+    private String tradeState;
+	@Column(name="order_list")
+    private String orderList;
+	@Column(name="pay_type")
+    private String payType;
 
-	/** setter and getter method */
-	public void setOutTradeNo(String outTradeNo){
-		this.outTradeNo = outTradeNo;
-	}
-	public String getOutTradeNo(){
-		return this.outTradeNo;
-	}
-	public void setCreateTime(java.util.Date createTime){
-		this.createTime = createTime;
-	}
-	public java.util.Date getCreateTime(){
-		return this.createTime;
-	}
-	public void setPayTime(java.util.Date payTime){
-		this.payTime = payTime;
-	}
-	public java.util.Date getPayTime(){
-		return this.payTime;
-	}
-	public void setTotalFee(Long totalFee){
-		this.totalFee = totalFee;
-	}
-	public Long getTotalFee(){
-		return this.totalFee;
-	}
-	public void setUserId(String userId){
-		this.userId = userId;
-	}
-	public String getUserId(){
-		return this.userId;
-	}
-	public void setTransactionId(String transactionId){
-		this.transactionId = transactionId;
-	}
-	public String getTransactionId(){
-		return this.transactionId;
-	}
-	public void setTradeState(String tradeState){
-		this.tradeState = tradeState;
-	}
-	public String getTradeState(){
-		return this.tradeState;
-	}
-	public void setOrderList(String orderList){
-		this.orderList = orderList;
-	}
-	public String getOrderList(){
-		return this.orderList;
-	}
-	public void setPayType(String payType){
-		this.payType = payType;
-	}
-	public String getPayType(){
-		return this.payType;
-	}
+    public String getOutTradeNo() {
+        return outTradeNo;
+    }
 
+    public void setOutTradeNo(String outTradeNo) {
+        this.outTradeNo = outTradeNo == null ? null : outTradeNo.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getPayTime() {
+        return payTime;
+    }
+
+    public void setPayTime(Date payTime) {
+        this.payTime = payTime;
+    }
+
+    public Long getTotalFee() {
+        return totalFee;
+    }
+
+    public void setTotalFee(Long totalFee) {
+        this.totalFee = totalFee;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
+    }
+
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId == null ? null : transactionId.trim();
+    }
+
+    public String getTradeState() {
+        return tradeState;
+    }
+
+    public void setTradeState(String tradeState) {
+        this.tradeState = tradeState == null ? null : tradeState.trim();
+    }
+
+    public String getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(String orderList) {
+        this.orderList = orderList == null ? null : orderList.trim();
+    }
+
+    public String getPayType() {
+        return payType;
+    }
+
+    public void setPayType(String payType) {
+        this.payType = payType == null ? null : payType.trim();
+    }
 }
