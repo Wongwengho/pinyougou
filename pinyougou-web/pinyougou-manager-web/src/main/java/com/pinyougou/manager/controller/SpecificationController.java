@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 规格管理
@@ -75,6 +76,12 @@ public class SpecificationController {
             e.printStackTrace();
         }
         return false;
+    }
+
+    /**查询所有的规格(id 与 specName)*/
+    @GetMapping("/findSpecList")
+    public List<Map<String,Object>> findSpecList(){
+        return specificationService.findAllByIdAndName();
     }
 
 }

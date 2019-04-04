@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 品牌
@@ -78,5 +79,11 @@ public class BrandController {
             e.printStackTrace();
         }
         return false;
+    }
+
+    /**品牌列表*/
+    @GetMapping("/findBrandList")
+    public List<Map<String,Object>> findBrandList(){
+        return brandService.findAllByIdAndName();
     }
 }
