@@ -53,7 +53,7 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 
     @Override
     public TypeTemplate findOne(Serializable id) {
-        return null;
+        return typeTemplateMapper.selectByPrimaryKey(id);
     }
 
     @Override

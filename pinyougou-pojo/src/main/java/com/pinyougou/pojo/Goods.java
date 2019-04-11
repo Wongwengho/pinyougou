@@ -65,7 +65,9 @@ public class Goods implements Serializable{
     /** 是否删除 */
 	@Column(name="is_delete")
     private String isDelete;
-    /** 商品描述 */
+    /** 商品描述
+     * @Transient: 通用Mapper不会把它当作tb_goods表中的列（表示不关心）
+     * */
 	@Transient
     private GoodsDesc goodsDesc;
     /** 商品SKU列表 */
