@@ -13,6 +13,7 @@
   <modules> 
     <module>pinyougou-manager-web</module>
     <module>pinyougou-shop-web</module>
+      <module>pinyougou-item-web</module>
   </modules>  
   <properties> 
     <!--tomcat 端口号-->  

@@ -118,6 +118,17 @@ app.controller('goodsController', function($scope, $controller, baseService){
                 parse(response.data.customAttributeItems);
 
             });
+
+            //根据类型模板id,查询规格选项数据
+            baseService.sendGet("/typeTemplate/findSpecByTemplateId?id" + newVal)
+                .then(function (response) {
+                    //获取响应数据
+                    /**
+                     * [{"id":27,"text":"网络","options" : [{},{}]},
+                       {"id":32,"text":"机身内存","options" : [{},{}]}]
+                     */
+                    $scope.specList = response.data;
+                })
         }else {
             $scope.brandIds = [];
         }
