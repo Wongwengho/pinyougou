@@ -142,7 +142,6 @@
 
                     </div>
                 </div>
-                {{goods}}
 
                 <!--图片上传-->
                 <div class="tab-pane" id="pic_upload">
@@ -202,36 +201,50 @@
                     </div>
                 </div>
 
-                <!--规格-->
+                <!-- 规格-->
                 <div class="tab-pane" id="spec">
                     <div class="row data-type">
                         <div class="col-md-2 title">是否启用规格</div>
                         <div class="col-md-10 data">
-                            <input type="checkbox">
+                            <input type="checkbox"
+                                   ng-true-value="1"
+                                   ng-false-value="0"
+                                   ng-model="goods.isEnableSpec"/>
                         </div>
                     </div>
-                    <p>
-                    <div>
 
-                        <div class="row data-type" ng-repeat="s in specList">
-                            <div>
+                    <div ng-if="goods.isEnableSpec == 1">
+
+                        <div class="row data-type">
+                            <!--
+                                [{"id":27,"text":"网络","options" : [{},{}]},
+                                 {"id":32,"text":"机身内存","options" : [{},{}]}]
+                            -->
+                            {{goods.goodsDesc.specificationItems}}
+                            <div ng-repeat="s in specList">
                                 <div class="col-md-2 title">{{s.text}}</div>
                                 <div class="col-md-10 data">
+
 											<span ng-repeat="o in s.options">
-                                                <input type="checkbox">{{o.optionName}}
+												<input type="checkbox"
+                                                       ng-click="updateSpecAttr($event,s.text,o.optionName);createItems()"/>
+												{{o.optionName}}
 											</span>
                                 </div>
                             </div>
                         </div>
-
 
                         <div class="row data-type">
                             <table
                                     class="table table-bordered table-striped table-hover dataTable">
                                 <thead>
                                 <tr>
-                                    <th class="sorting">屏幕尺寸</th>
-                                    <th class="sorting">网络制式</th>
+                                    <!-- [{"attributeValue":["移动3G","移动4G","联通3G"],"attributeName":"网络"},
+                                    {"attributeValue":["16G","32G"],"attributeName":"机身内存"}]-->
+                                    <th class="sorting"
+                                        ng-repeat="spec in goods.goodsDesc.specificationItems">
+                                        {{spec.attributeName}}</th>
+                                    {{goods.items}}
                                     <th class="sorting">价格</th>
                                     <th class="sorting">库存</th>
                                     <th class="sorting">是否启用</th>
@@ -239,45 +252,31 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>4.0</td>
-                                    <td>3G</td>
-                                    <td><input class="form-control" placeholder="价格">
+                                <tr ng-repeat="item in goods.items">
+                                    <!--
+                                        [{"attributeValue":["移动3G","移动4G","联通3G"],"attributeName":"网络"},
+                                        {"attributeValue":["16G","32G"],"attributeName":"机身内存"}]
+                                    -->
+                                    <td ng-repeat="s in goods.goodsDesc.specificationItems">
+                                        {{item.spec[s.attributeName]}}
                                     </td>
-                                    <td><input class="form-control" placeholder="库存数量">
+
+                                    <td><input class="form-control"
+                                               ng-model="item.price"
+                                               placeholder="价格">
                                     </td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>4.0</td>
-                                    <td>4G</td>
-                                    <td><input class="form-control" placeholder="价格">
+                                    <td><input class="form-control"
+                                               ng-model="item.num"
+                                               placeholder="库存数量">
                                     </td>
-                                    <td><input class="form-control" placeholder="库存数量">
-                                    </td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>5.0</td>
-                                    <td>3G</td>
-                                    <td><input class="form-control" placeholder="价格">
-                                    </td>
-                                    <td><input class="form-control" placeholder="库存数量">
-                                    </td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>5.0</td>
-                                    <td>4G</td>
-                                    <td><input class="form-control" placeholder="价格">
-                                    </td>
-                                    <td><input class="form-control" placeholder="库存数量">
-                                    </td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"
+                                               ng-true-value="1"
+                                               ng-false-value="0"
+                                               ng-model="item.status"></td>
+                                    <td><input type="checkbox"
+                                               ng-true-value="1"
+                                               ng-false-value="0"
+                                               ng-model="item.isDefault"></td>
                                 </tr>
 
                                 </tbody>
