@@ -18,6 +18,65 @@ app.controller('goodsController', function($scope, $controller, baseService){
             });
     };
 
+    /** 定义状态数组 */
+    $scope.status = ['未审核','已审核','审核未通过','关闭'];
+
+    /** 商品的审核与驳回*/
+    $scope.updateStatus = function(status){
+        if ($scope.ids.length > 0){
+            baseService.sendGet("/goods/updateStatus?status=" + status + "&ids=" + $scope.ids)
+                .then(function (response) {
+                    //获取响应数据
+                    if (response.data){
+                        //重新加载
+                        $scope.reload();
+                        //清空ids数组
+                        $scope.ids = [];
+                    } else{
+                        alert("审核失败!");
+                    }
+                })
+        }else{
+            alert("请选择需要审核的商品!");
+        }
+    };
+
+    /** 批量删除 */
+    $scope.delete = function(){
+        if ($scope.ids.length > 0){
+            baseService.deleteById("/goods/delete", $scope.ids)
+                .then(function(response){
+                    if (response.data){
+                        /** 重新加载数据 */
+                        $scope.reload();
+                    }else{
+                        alert("删除失败！");
+                    }
+                });
+        }else{
+            alert("请选择要删除的记录！");
+        }
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /** 添加或修改 */
     $scope.saveOrUpdate = function(){
         var url = "save";
@@ -42,20 +101,5 @@ app.controller('goodsController', function($scope, $controller, baseService){
        $scope.entity = JSON.parse(JSON.stringify(entity));
     };
 
-    /** 批量删除 */
-    $scope.delete = function(){
-        if ($scope.ids.length > 0){
-            baseService.deleteById("/goods/delete", $scope.ids)
-                .then(function(response){
-                    if (response.data){
-                        /** 重新加载数据 */
-                        $scope.reload();
-                    }else{
-                        alert("删除失败！");
-                    }
-                });
-        }else{
-            alert("请选择要删除的记录！");
-        }
-    };
+
 });

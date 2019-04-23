@@ -9,11 +9,10 @@
 		SELECT id,goods_name AS goodsName,price,
 		audit_status AS auditStatus,category1_id AS category1Id,
 		category2_id AS category2Id,category3_id AS category3Id
-		FROM `tb_goods`
-		<where>
+		FROM `tb_goods` where is_delete is null
 			<!-- 商家id -->
 			<if test="sellerId != null and sellerId !=''">
-				seller_id = #{sellerId}
+				and seller_id = #{sellerId}
 			</if>
 			<!-- 商品名称 -->
 			<if test="goodsName != null and goodsName !=''">
@@ -23,7 +22,14 @@
 			<if test="auditStatus != null and auditStatus !=''">
 				and audit_status = #{auditStatus}
 			</if>
-		</where>
 		order by id asc
 	</select>
+
+	<!-- 商品审核,修改商品状态 -->
+	<update id="updateStatus">
+		update tb_goods set ${columnName} = #{status} where id in
+		<foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</update>
 </mapper>

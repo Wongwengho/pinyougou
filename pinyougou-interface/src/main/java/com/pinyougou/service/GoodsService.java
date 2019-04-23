@@ -36,4 +36,7 @@ public interface GoodsService {
 
 	/**根据spu的id查询商品信息*/
 	Map<String, Object> getGoods(Long goodsId);
+
+	/** 商品审核,修改商品状态 */
+	void updateStatus(String columnName, Long[] ids, String status);
 }

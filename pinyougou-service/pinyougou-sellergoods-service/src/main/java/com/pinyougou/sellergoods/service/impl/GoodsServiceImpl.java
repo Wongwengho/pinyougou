@@ -139,7 +139,6 @@ public class GoodsServiceImpl implements GoodsService {
         Seller seller = sellerMapper.selectByPrimaryKey(goods.getSellerId());
         item.setSeller(seller != null ? seller.getNickName() : "");
     }
-
     @Override
     public void update(Goods goods) {
 
@@ -250,6 +249,17 @@ public class GoodsServiceImpl implements GoodsService {
             dataModel.put("itemCat3", itemCat3 != null ? itemCat3.getName() : "");
 
             return dataModel;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /** 商品审核,修改商品状态 */
+    @Override
+    public void updateStatus(String columnName, Long[] ids, String status) {
+        try {
+            // UPDATE tb_goods SET audit_status = ? WHERE id IN (?,?)
+            goodsMapper.updateStatus(columnName,ids,status);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
